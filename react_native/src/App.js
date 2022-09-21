@@ -7,6 +7,8 @@ import {useState} from 'react';
 
 // className은 최상위 컴포넌트 이름
 function App() {
+  const [mode,setMode] = useState("welcome")
+  const [welcome,setWelcome] = useState({title:'welcome', desc:'Hello, React'})
   const [title,setTitle] = useState("Web")
   const [subTitle,setSubTitle] = useState("State Test!")
   const [contents,setContents] = useState([
@@ -16,11 +18,30 @@ function App() {
     {id:3, title:'Node.js', desc:'NodeJS is for Server...'},
   ])
 
+  const [selectedItem, setSelectedItem] = useState(0)
+
+  var _title, _desc = null;
+  if(mode === 'welcome') {
+    _title = welcome.title
+    _desc = welcome.desc
+  }else if(mode === 'read') {
+    _title = contents[selectedItem].title
+    _desc = contents[selectedItem].desc
+  }
+
+  var onChangePage = function() {
+    setMode('read')
+  }
+  const onClick = function() {
+    setMode('welcome')
+  }
+  console.log("app render")
+
   return (
     <div className="App">  
-      <Subject title = {title} subTitle = {subTitle}></Subject>
-      <TableOfContent data = {contents}></TableOfContent>
-      <Content title = "HTML" desc = "HTML is HyperText Markup Language"></Content>
+      <Subject title = {title} subTitle = {subTitle} setMode = {setMode} onClick = {onClick}></Subject>
+      <TableOfContent setSelectedItem = {setSelectedItem} onChangePage = {onChangePage} data = {contents}></TableOfContent>
+      <Content title = {_title} desc = {_desc}></Content>
     </div>
   );
 }
