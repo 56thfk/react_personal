@@ -2,8 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 import PropsChild from './propsChild';
+import Header from './Components/Header'
 
 export default function App() {
+  /*
   const[state, setState] = useState({
     sampleText: 'Hello',
     sampleBoolean: true
@@ -15,17 +17,21 @@ export default function App() {
       setState({sampleText: 'Hello', sampleBoolean: true})
     }
   }
-  
+  */
+  const [appName, setAppName] = useState('First App')
+
   return (
+    <View style = {styles.mainView}>
+      <Header name = {appName}/>
+    </View>
+    /*
     <View>
       <PropsChild sText = {state.sampleText} cState = {changeState}/>
     </View>
-    /*
     <View style = {styles.mainView}>
       <View style = {styles.subView}>
         <Text>Hello World</Text>
       </View>
-
       <View style = {styles.anotherView}>
         <Text style = {styles.mainText}> Hello World</Text>
       </View>
@@ -36,7 +42,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   mainView:{
-    backgroundColor: 'green',
     flex: 1,
     height:'100%',
     marginTop: 50,
