@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 import PropsChild from './propsChild';
 import Header from './Components/Header'
+import Generator from './Components/Generator';
+import NumList from './Components/Numlist';
 
 export default function App() {
   /*
@@ -19,10 +21,23 @@ export default function App() {
   }
   */
   const [appName, setAppName] = useState('First App')
+  const [random, setRandom] = useState([30, 999])
+  const onAddRandomNum = () => {
+    const newNum = Math.floor(Math.random()*100)+1;
+    setRandom([...random, newNum])
+  }
+  const onNumDelete = (position) => {
+    const newArray = random.filter((num, index) => {
+      return position != index;
+    })
+    setRandom(newArray)
+  }
 
   return (
     <View style = {styles.mainView}>
       <Header name = {appName}/>
+      <Generator add = {onAddRandomNum}></Generator>
+      <NumList num = {random} delete = {onNumDelete}></NumList>
     </View>
     /*
     <View>
