@@ -5,6 +5,7 @@ import PropsChild from './propsChild';
 import Header from './Components/Header';
 import Generator from './Components/Generator';
 import NumList from './Components/Numlist';
+import Input from './Components/Input';
 
 export default function App() {
   /*
@@ -36,6 +37,7 @@ export default function App() {
   return (
     <View style = {styles.mainView}>
       <Header name = {appName}/>
+      <Input></Input>
       <Generator add = {onAddRandomNum}></Generator>
       <ScrollView style={{width: '100%'}}
         //onContentSizeChange={(width, height)=>alert(height)}
