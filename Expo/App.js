@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import { useState } from 'react';
 import PropsChild from './propsChild';
-import Header from './Components/Header'
+import Header from './Components/Header';
 import Generator from './Components/Generator';
 import NumList from './Components/Numlist';
 
@@ -37,7 +37,11 @@ export default function App() {
     <View style = {styles.mainView}>
       <Header name = {appName}/>
       <Generator add = {onAddRandomNum}></Generator>
-      <NumList num = {random} delete = {onNumDelete}></NumList>
+      <ScrollView style={{width: '100%'}}
+        //onContentSizeChange={(width, height)=>alert(height)}
+        bounces={true} >
+        <NumList num = {random} delete = {onNumDelete}></NumList>
+      </ScrollView>
     </View>
     /*
     <View>
