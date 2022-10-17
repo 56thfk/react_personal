@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, ScrollView, View, Button, TextInput, Text } from 'react-native';
+import Picker from './Components/Picker'
 
 export default function App() {
   const[myTextInput, setMyTextInput] = useState("")
@@ -13,6 +14,7 @@ export default function App() {
   }
   return(
     <View>
+      <Picker></Picker>
       <TextInput
         style={styles.input}
         value={myTextInput}
