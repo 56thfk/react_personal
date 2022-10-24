@@ -24,7 +24,7 @@ export default function App() {
         ></TextInput>
         <Button title= "Add Text Input"
         onPress = {onAddTextInput}></Button>
-        <ScrollView style = {{width:"100%"}}>
+        <ScrollView style = {{width:"100%", marginTop: 200}}>
           {alphabet.map((item, idx)=>(
             <Text 
               style={styles.mainText}
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#cecece",
     fontSize: 25,
-    padding: 10
+    padding: 10,
   },
   mainText: {
     fontSize: 20,
     color: "red",
     padding: 20,
-    margin: 20,
+    margin: 10,
     backgroundColor: 'pink'
   }
 });
