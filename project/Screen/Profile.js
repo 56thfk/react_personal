@@ -4,6 +4,7 @@ import { SafeAreaView, View, StyleSheet, Button, TextInput, Text} from 'react-na
 const Profile = (props) => {
     const [text, onChangeText] = React.useState("");
     const [number, onChangeNumber] = React.useState(null);
+    const [age, setAge] = React.useState(0);
 
     return (
         <SafeAreaView style={{
@@ -17,6 +18,7 @@ const Profile = (props) => {
             </View>
             <View>
                 <Text style={styles.name}>나이</Text>
+                <TextInput style={styles.input} keyboardType={'numeric'} setAge={setAge} value={age}></TextInput>
             </View>
         </SafeAreaView> 
     );
@@ -32,9 +34,10 @@ const styles = StyleSheet.create({
   },
   name: {
     paddingLeft: 10,
+    textAlign: 'left'
   },
   list:{
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   }
 });
 
