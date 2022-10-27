@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import GyroscopeSensor from './Sensors/GyroscopeSensor';
-import AccelerometerSensor from './Sensors/AccelerometerSensor';
-import MagnetometerSensor from './Sensors/MagnetometerSensor';
+import Home from './Screen/Home';
+
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <GyroscopeSensor></GyroscopeSensor>
-      <AccelerometerSensor></AccelerometerSensor>
-      <MagnetometerSensor></MagnetometerSensor>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name = "Home" component={Home}
+          options={{title: 'Home'}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

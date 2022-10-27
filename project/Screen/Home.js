@@ -1,18 +1,24 @@
 import {Text, View, StyleSheet, Button} from 'react-native';
 
+import GyroscopeSensor from 'project/Sensors/GyroscopeSensor';
+import AccelerometerSensor from 'project/Sensors/AccelerometerSensor';
+import MagnetometerSensor from 'project/Sensors/MagnetometerSensor';
+
 const Home = (props) => {
     return (
         <View style={{
             flex:1,
-            alignItems:'center',
-            justifyContent:'center'
+            justifyContent: 'center',
+            paddingHorizontal: 10,   
         }}>
-            <Text>Home Screen</Text>
             <Button
-                title='To User Screen'
+                title='To Start Screen'
                 onPress={()=>{
-                    props.navigation.navigate("User")
+                    props.navigation.navigate("Start")
                 }}/>
+            <GyroscopeSensor></GyroscopeSensor>
+            <AccelerometerSensor></AccelerometerSensor>
+            <MagnetometerSensor></MagnetometerSensor>
         </View>
     );
 }
