@@ -11,14 +11,9 @@ const Home = (props) => {
             justifyContent: 'center',
             paddingHorizontal: 10,   
         }}>
-            <Button
-                title='To Start Screen'
-                onPress={()=>{
-                    props.navigation.navigate("Start")
-                }}/>
-            <GyroscopeSensor></GyroscopeSensor>
-            <AccelerometerSensor></AccelerometerSensor>
-            <MagnetometerSensor></MagnetometerSensor>
+        <GyroscopeSensor></GyroscopeSensor>
+        <AccelerometerSensor></AccelerometerSensor>
+        <MagnetometerSensor></MagnetometerSensor>
         </View>
     );
 }
