@@ -1,51 +1,44 @@
-import React, { useState } from 'react';
-import { SafeAreaView, View, StyleSheet, Button, TextInput, Text, InputAccessoryView} from 'react-native';
+import React from 'react'
+import { SafeAreaView, View, StyleSheet, Button, TextInput, Text} from 'react-native';
 
-import DateTimePicker from '@react-native-community/datetimepicker';
+const Profile = (props) => {
+    const [text, onChangeText] = React.useState("");
+    const [number, onChangeNumber] = React.useState(null);
+    const [age, setAge] = React.useState(0);
 
- const Profile = () => {
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
-  
-    const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate;
-      setShow(false);
-      setDate(currentDate);
-    };
-  
-    const showMode = (currentMode) => {
-      if (Platform.OS === 'android') {
-        setShow(false);
-        // for iOS, add a button that closes the picker
-      }
-      setMode(currentMode);
-    };
-  
-    const showDatepicker = () => {
-      showMode('date');
-    };
-  
-    const showTimepicker = () => {
-      showMode('time');
-    };
-  
     return (
-      <View>
-        <Button onPress={showDatepicker} title="Show date picker!" />
-        <Button onPress={showTimepicker} title="Show time picker!" />
-        <Text>selected: {date.toLocaleString()}</Text>
-        {show || (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            onChange={onChange}
-          />
-        )}
-      </View>
+        <SafeAreaView style={{
+            flex:1,
+            justifyContent: 'center',
+            paddingHorizontal: 10,   
+        }}>
+            <View style={styles.list}>
+                <Text style={styles.name}>이름</Text>
+                <TextInput style={styles.input} onChangeText={onChangeText} value={text}/>
+            </View>
+            <View>
+                <Text style={styles.name}>나이</Text>
+                <TextInput style={styles.input} keyboardType={'numeric'} setAge={setAge} value={age}></TextInput>
+            </View>
+        </SafeAreaView> 
     );
-  };
+}
+
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 10
+  },
+  name: {
+    paddingLeft: 10,
+    textAlign: 'left'
+  },
+  list:{
+    justifyContent: 'space-between',
+  }
+});
 
 export default Profile;

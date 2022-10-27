@@ -1,81 +1,51 @@
 import React, { useState } from 'react';
-import { Button, Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Button, TextInput, Text, InputAccessoryView} from 'react-native';
 
-const STYLES = ['default', 'dark-content', 'light-content'];
-const TRANSITIONS = ['fade', 'slide', 'none'];
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-const App = () => {
-  const [hidden, setHidden] = useState(false);
-  const [statusBarStyle, setStatusBarStyle] = useState(STYLES[0]);
-  const [statusBarTransition, setStatusBarTransition] = useState(TRANSITIONS[0]);
-
-  const changeStatusBarVisibility = () => setHidden(!hidden);
-
-  const changeStatusBarStyle = () => {
-    const styleId = STYLES.indexOf(statusBarStyle) + 1;
-    if (styleId === STYLES.length) {
-      setStatusBarStyle(STYLES[0]);
-    } else {
-      setStatusBarStyle(STYLES[styleId]);
-    }
-  };
-
-  const changeStatusBarTransition = () => {
-    const transition = TRANSITIONS.indexOf(statusBarTransition) + 1;
-    if (transition === TRANSITIONS.length) {
-      setStatusBarTransition(TRANSITIONS[0]);
-    } else {
-      setStatusBarTransition(TRANSITIONS[transition]);
-    }
-  };
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#61dafb"
-        barStyle={statusBarStyle}
-        showHideTransition={statusBarTransition}
-        hidden={hidden}
-      />
-      <Text style={styles.textStyle}>
-        StatusBar Visibility:{'\n'}
-        {hidden ? 'Hidden' : 'Visible'}
-      </Text>
-      <Text style={styles.textStyle}>
-        StatusBar Style:{'\n'}
-        {statusBarStyle}
-      </Text>
-      {Platform.OS === 'ios' ? (
-        <Text style={styles.textStyle}>
-          StatusBar Transition:{'\n'}
-          {statusBarTransition}
-        </Text>
-      ) : null}
-      <View style={styles.buttonsContainer}>
-        <Button title="Toggle StatusBar" onPress={changeStatusBarVisibility} />
-        <Button title="Change StatusBar Style" onPress={changeStatusBarStyle} />
-        {Platform.OS === 'ios' ? (
-          <Button title="Change StatusBar Transition" onPress={changeStatusBarTransition} />
-        ) : null}
+ const Profile = () => {
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+  
+    const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate;
+      setShow(false);
+      setDate(currentDate);
+    };
+  
+    const showMode = (currentMode) => {
+      if (Platform.OS === 'android') {
+        setShow(false);
+        // for iOS, add a button that closes the picker
+      }
+      setMode(currentMode);
+    };
+  
+    const showDatepicker = () => {
+      showMode('date');
+    };
+  
+    const showTimepicker = () => {
+      showMode('time');
+    };
+  
+    return (
+      <View>
+        <Button onPress={showDatepicker} title="Show date picker!" />
+        <Button onPress={showTimepicker} title="Show time picker!" />
+        <Text>selected: {date.toLocaleString()}</Text>
+        {show || (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={mode}
+            is24Hour={true}
+            onChange={onChange}
+          />
+        )}
       </View>
-    </SafeAreaView>
-  );
-};
+    );
+  };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ECF0F1',
-  },
-  buttonsContainer: {
-    padding: 10,
-  },
-  textStyle: {
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-});
-
-export default App;
+export default Profile;
