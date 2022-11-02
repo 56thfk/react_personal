@@ -17,6 +17,17 @@ const Home = (props) => {
                         userLastName: "Won"
                     })
                 }}/>
+            <Button 
+            title = "Change the Title"
+            onPress={() => 
+                props.navigation.setOptions({
+                    title:"Changed",
+                    headerStyle:{
+                        backgroundColor:'pink'
+                    },
+                headerTintColor: 'red'})
+            }>
+            </Button>
         </View>
     );
 }
