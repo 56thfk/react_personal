@@ -9,6 +9,7 @@ import Home from './Screen/Home';
 import Sample from './Screen/Sample';
 import Profile from './Screen/Profile';
 import Test from './Screen/Test';
+import Chart from './Screen/Chart';
 import { StatusBar } from 'expo-status-bar';
 
 const Stack = createStackNavigator();
@@ -16,6 +17,7 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <StatusBar s></StatusBar>
@@ -23,6 +25,7 @@ export default function App() {
         <Drawer.Screen name = "Home" component={Home}/>
         <Drawer.Screen name = "Profile" component={Profile}/>
         <Drawer.Screen name = "Test" component={Test}/>
+        <Drawer.Screen name = "Chart" component={Chart}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
